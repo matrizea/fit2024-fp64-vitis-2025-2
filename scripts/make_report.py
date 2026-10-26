@@ -1,4 +1,5 @@
 """Render comparison tables from actual HLS reports without filling missing data."""
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -36,7 +37,9 @@ for name, cyc, mhz, dsp, ff, lut in [
 
 
 def main():
-    result_dir = ROOT / 'results'
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--results-dir', type=Path, default=ROOT / 'results')
+    result_dir = parser.parse_args().results_dir.resolve()
     rows = json.loads((result_dir / 'summary.json').read_text(encoding='utf-8'))
     data = {row['case']: row for row in rows}
     def cell(row, key):
@@ -91,7 +94,7 @@ def main():
     text += ['', '## 読み取り上の制約', '',
              'Fmax・DSP/FF/LUTはHLS推定で、配置配線後のtimingや実機測定ではありません。clock=10ns、uncertainty=2.7nsで全条件を統一しました。1000/estimated periodが100MHz以上でも、uncertaintyを引いた7.3nsのスケジューリング目標や実機到達を保証しません。BIND_OPで短いcycle数を指定してもtiming違反がある場合、100MHzの有効な高速化と解釈できません。', '',
              '元論文の演算器LUT数、Gauss-Jordanのlatency・BRAM・DSP数は完全には一致していません。資源共有、メモリ構成、演算器の実装、ツールのスケジュールが異なるためです。論文の表2にはBRAM列がなく、転記JSONではnullとしています。表3のBRAM列には18K単位の明記がありません。本設計のBRAM_18K列と同一単位とは断定していません。論文の最大1.63倍高速化の厳密な追試には、著者のソースと評価条件が必要です。', '',
-             '[単体演算器の修正前後比較](optimization.md) / [全測定値 CSV](summary.csv) / [元論文の転記値 JSON](paper_reference.json) / [現在のソース SHA256](source_hashes.json) / [実行手順](../README.md)', '',
+             '[単体演算器の修正前後比較](optimization.md) / [全測定値 CSV](summary.csv) / [元論文の転記値 JSON](paper_reference.json) / [現在のソース SHA256](source_hashes.json) / [実行手順](../docs/reproduction.md)', '',
              '[元論文の公式PDF](https://www.ipsj.or.jp/award/9faeag0000004f4v-att/C-003_3.pdf) 表1-3、[AMD 2025.2 CLI](https://docs.amd.com/r/2025.2-English/ug1399-vitis-hls/vitis-v-and-vitis-run-Commands)を参照。', '']
     (result_dir/'report.md').write_text('\n'.join(text), encoding='utf-8')
     (result_dir/'paper_reference.json').write_text(json.dumps(REFERENCE, indent=2), encoding='utf-8')
@@ -104,7 +107,7 @@ def main():
     with (result_dir/'comparison.csv').open('w', newline='', encoding='utf-8-sig') as f:
         writer=csv.DictWriter(f,fieldnames=fields)
         writer.writeheader(); writer.writerows(comparison)
-    print('Wrote results/report.md and comparison.csv')
+    print(f'Wrote {result_dir / "report.md"} and comparison.csv')
 
 
 if __name__ == '__main__':

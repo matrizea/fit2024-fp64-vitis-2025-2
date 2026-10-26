@@ -1,5 +1,0 @@
-                             latency        interval
-transaction       0:           12880           12881
-transaction       1:           12880           12881
-transaction       2:           12880           12881
-transaction       3:           12880               x
