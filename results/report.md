@@ -4,31 +4,31 @@ FIT2024 C-003の手法を独立に再実装し、既存のVitis/Vivado 2025.2で
 
 ユーザー確認により、原実装もゼロ・NaN・Inf・非正規化数を例外経路で処理します。例外分類の範囲は今回と共通です。返却bit・判定優先順位の詳細は原コード未入手のため同一性を検証していません。
 
-最終ソースでCsim成功 **27/27条件**、HLS合成成功 **27/27条件**、RTL Cosim成功 **6条件**。
+最終ソースでCsim成功 **27/27条件**、HLS合成成功 **27/27条件**、RTL Cosim成功 **9条件**。
 
 ## 単体演算器
 
-latencyはHLS top reportのWorst-caseLatency、intervalはInterval-maxを補正せず記載します。論文のレイテンシとtop handshakeを含む測定範囲が異なる可能性があります。標準IPの論文5 cycleに対し2025.2のtop latencyは4、intervalは5です。原top非公開のため同一性は断定しません。
+latencyはHLS top reportのWorst-caseLatency、intervalはInterval-maxの生値です。論文の単体演算器はII=1であることがユーザーから確認されています。単体topにPIPELINE II=1を指定し、合成と連続入力のRTL Cosimで受付間隔を確認します。開始C0から完了Cnまでのサイクル枠で比較する場合はlatency+1と数えます。標準IPの生latency4は開始を含む5枠、独自版の生latency1は2枠です。経過時間への1周期加算や、BIND_OPの指定latencyへの一律補正は行いません。
 
 | 条件 | 論文 latency | 2025.2 top latency | interval | 論文 Fmax MHz | HLS推定 Fmax MHz | DSP | FF | LUT |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| add_native | 5 | 4 | 5 | 197.28 | 197.278 | 3 | 450 | 813 |
-| add_bind_fabric | 3 | 3 | 4 | 78.98 | 157.58 | 0 | 332 | 836 |
-| add_bind_dsp | 3 | 3 | 4 | 63.89 | 108.897 | 3 | 434 | 788 |
-| add_bind_fulldsp | 3 | 3 | 4 | 63.89 | 108.897 | 3 | 434 | 788 |
-| sub_native | 5 | 4 | 5 | 197.28 | 197.278 | 3 | 450 | 813 |
-| sub_bind_fabric | 3 | 3 | 4 | 78.98 | 157.58 | 0 | 332 | 836 |
-| sub_bind_dsp | 3 | 3 | 4 | 63.89 | 108.897 | 3 | 434 | 788 |
-| sub_bind_fulldsp | 3 | 3 | 4 | 63.89 | 108.897 | 3 | 434 | 788 |
-| mul_native | 5 | 4 | 5 | 142.01 | 142.005 | 11 | 304 | 234 |
-| mul_bind_fabric | 2 | 2 | 3 | 70.20 | 84.246 | 0 | 259 | 2660 |
-| mul_bind_dsp | 2 | 2 | 3 | 63.89 | 53.169 | 11 | 259 | 199 |
-| mul_bind_meddsp | 2 | 2 | 3 | 63.89 | 56.609 | 9 | 259 | 250 |
-| mul_bind_fulldsp | 2 | 2 | 3 | 63.89 | 58.682 | 10 | 259 | 232 |
-| mul_bind_maxdsp | 2 | 2 | 3 | 63.89 | 53.169 | 11 | 259 | 199 |
-| add_custom | 3 | 1 | 2 | 137.58 | 144.279 | 0 | 206 | 1810 |
-| sub_custom | 3 | 1 | 2 | 137.17 | 144.279 | 0 | 206 | 1812 |
-| mul_custom | 2 | 1 | 2 | 142.63 | 149.165 | 9 | 80 | 571 |
+| add_native | 5 | 4 | 1 | 197.28 | 197.278 | 3 | 450 | 784 |
+| add_bind_fabric | 3 | 3 | 1 | 78.98 | 157.58 | 0 | 332 | 812 |
+| add_bind_dsp | 3 | 3 | 1 | 63.89 | 108.897 | 3 | 434 | 764 |
+| add_bind_fulldsp | 3 | 3 | 1 | 63.89 | 108.897 | 3 | 434 | 764 |
+| sub_native | 5 | 4 | 1 | 197.28 | 197.278 | 3 | 450 | 784 |
+| sub_bind_fabric | 3 | 3 | 1 | 78.98 | 157.58 | 0 | 332 | 812 |
+| sub_bind_dsp | 3 | 3 | 1 | 63.89 | 108.897 | 3 | 434 | 764 |
+| sub_bind_fulldsp | 3 | 3 | 1 | 63.89 | 108.897 | 3 | 434 | 764 |
+| mul_native | 5 | 4 | 1 | 142.01 | 142.005 | 11 | 304 | 205 |
+| mul_bind_fabric | 2 | 2 | 1 | 70.20 | 84.246 | 0 | 259 | 2642 |
+| mul_bind_dsp | 2 | 2 | 1 | 63.89 | 53.169 | 11 | 259 | 181 |
+| mul_bind_meddsp | 2 | 2 | 1 | 63.89 | 56.609 | 9 | 259 | 232 |
+| mul_bind_fulldsp | 2 | 2 | 1 | 63.89 | 58.682 | 10 | 259 | 214 |
+| mul_bind_maxdsp | 2 | 2 | 1 | 63.89 | 53.169 | 11 | 259 | 181 |
+| add_custom | 3 | 1 | 1 | 137.58 | 144.279 | 0 | 206 | 1798 |
+| sub_custom | 3 | 1 | 1 | 137.17 | 144.279 | 0 | 206 | 1800 |
+| mul_custom | 2 | 1 | 1 | 142.63 | 149.165 | 9 | 80 | 559 |
 
 ## 10元 Gauss-Jordan
 
@@ -59,9 +59,12 @@ latencyはHLS top reportのWorst-caseLatency、intervalはInterval-maxを補正�
 
 | RTL検証対象 | 結果 | latency min/avg/max | interval min/avg/max |
 |---|---|---:|---:|
-| add_custom | Pass | 1/1/1 | 2/2/2 |
-| sub_custom | Pass | 1/1/1 | 2/2/2 |
-| mul_custom | Pass | 1/1/1 | 2/2/2 |
+| add_native | Pass | 4/4/4 | 1/1/1 |
+| add_custom | Pass | 1/1/1 | 1/1/1 |
+| sub_native | Pass | 4/4/4 | 1/1/1 |
+| sub_custom | Pass | 1/1/1 | 1/1/1 |
+| mul_native | Pass | 4/4/4 | 1/1/1 |
+| mul_custom | Pass | 1/1/1 | 1/1/1 |
 | gj_native | Pass | 12880/12880/12880 | 12881/12881/12881 |
 | gj_custom_both | Pass | 8700/8700/8700 | 8701/8701/8701 |
 | gj_inline_both | Pass | 6620/6620/6620 | 6621/6621/6621 |

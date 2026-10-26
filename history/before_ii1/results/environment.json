@@ -1,0 +1,19 @@
+{
+  "os": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "vitis_version": "2025.2",
+  "vitis_sw_build": "6295257",
+  "vivado_version": "2025.2",
+  "vivado_sw_build": "6299465",
+  "tool_root": "C:/AMDDesignTools/2025.2",
+  "part": "xczu7ev-ffvc1156-2-e",
+  "clock_ns": 10,
+  "clock_uncertainty_ns": 2.7,
+  "flow": "vivado",
+  "hardware_execution": false,
+  "optimization_candidates": {
+    "add_sub": "experiments/add/k",
+    "mul": "experiments/mul/direct_narrow"
+  },
+  "fp64_sha256": "bd97912975212a3d17310c1690b5cb3ea82a299570c6fdb88cc4a8be062d1518"
+}

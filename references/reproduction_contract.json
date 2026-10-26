@@ -4,7 +4,10 @@
     "nan_input_uses_special_case": true,
     "infinity_input_uses_special_case": true,
     "subnormal_input_uses_special_case": true,
-    "confirmation_basis": "Specification clarification supplied during the reproduction; original source code was not inspected."
+    "sources": [
+      "User confirmed that the original implementation handles zero, NaN, infinity and subnormal inputs as special cases, and that its scalar operators have II=1."
+    ],
+    "scalar_operator_initiation_interval_cycles": 1
   },
   "original_unconfirmed": [
     "Exact returned encodings for special-value input combinations",
@@ -22,6 +25,7 @@
     "subnormal_inputs_use_zero_path": true,
     "zero_and_exception_inputs_in_existing_rtl_tests": true,
     "scalar_rtl_latency_cycles": 1,
-    "scalar_rtl_transaction_interval_cycles": 2
+    "scalar_rtl_transaction_interval_cycles": 1,
+    "scalar_top_pipeline_enabled": true
   }
 }

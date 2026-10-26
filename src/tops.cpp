@@ -16,18 +16,22 @@
     REPRO_PRAGMA(HLS INTERFACE ap_ctrl_hs port=return)
 
 double add_native(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     return a + b;
 }
 double sub_native(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     return a - b;
 }
 double mul_native(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     return a * b;
 }
 double add_bind(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     double result;
     REPRO_PRAGMA(HLS BIND_OP variable=result op=dadd impl=REPRO_ADD_IMPL latency=3)
@@ -35,6 +39,7 @@ double add_bind(double a, double b) {
     return result;
 }
 double sub_bind(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     double result;
     REPRO_PRAGMA(HLS BIND_OP variable=result op=dsub impl=REPRO_ADD_IMPL latency=3)
@@ -42,6 +47,7 @@ double sub_bind(double a, double b) {
     return result;
 }
 double mul_bind(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     double result;
     REPRO_PRAGMA(HLS BIND_OP variable=result op=dmul impl=REPRO_MUL_IMPL latency=2)
@@ -49,14 +55,17 @@ double mul_bind(double a, double b) {
     return result;
 }
 double add_custom(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     return repro::fp_add(a, b);
 }
 double sub_custom(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     return repro::fp_sub(a, b);
 }
 double mul_custom(double a, double b) {
+#pragma HLS PIPELINE II=1
     REPRO_BINARY_PORTS
     return repro::fp_mul(a, b);
 }

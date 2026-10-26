@@ -1,0 +1,5 @@
+                             latency        interval
+transaction       0:            8700            8701
+transaction       1:            8700            8701
+transaction       2:            8700            8701
+transaction       3:            8700               x

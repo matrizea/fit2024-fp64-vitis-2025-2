@@ -1,0 +1,38 @@
+[
+  {
+    "name": "native_oracle",
+    "returncode": 0,
+    "log": "build\\arithmetic\\native_oracle.log",
+    "input_sha256": {
+      "src/fp64.hpp": "bd97912975212a3d17310c1690b5cb3ea82a299570c6fdb88cc4a8be062d1518",
+      "tests/tb_fp64.cpp": "77696a19dd4dffa798b949b8bccf0b03fa58d8ea260a6a607ca95644d18822d5"
+    }
+  },
+  {
+    "name": "amd_model",
+    "returncode": 0,
+    "log": "build\\arithmetic\\amd_model.log",
+    "input_sha256": {
+      "src/fp64.hpp": "bd97912975212a3d17310c1690b5cb3ea82a299570c6fdb88cc4a8be062d1518",
+      "tests/tb_fp64.cpp": "77696a19dd4dffa798b949b8bccf0b03fa58d8ea260a6a607ca95644d18822d5"
+    }
+  },
+  {
+    "name": "amd_boundary",
+    "returncode": 0,
+    "log": "build\\arithmetic\\amd_boundary.log",
+    "input_sha256": {
+      "src/fp64.hpp": "bd97912975212a3d17310c1690b5cb3ea82a299570c6fdb88cc4a8be062d1518",
+      "tests/tb_amd_model.cpp": "2e564a6861c70df6d251be083af97258ad7fc734331bd90684707c9eaa9b30e4"
+    }
+  },
+  {
+    "name": "amd_rounding",
+    "returncode": 0,
+    "log": "build\\arithmetic\\amd_rounding.log",
+    "input_sha256": {
+      "src/fp64.hpp": "bd97912975212a3d17310c1690b5cb3ea82a299570c6fdb88cc4a8be062d1518",
+      "tests/tb_rounding.cpp": "cf5385ddf5528336901ff668db335103204cdd67e6afce2e9d3347c2b8e352fd"
+    }
+  }
+]

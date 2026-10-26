@@ -50,7 +50,7 @@ def main():
         'ユーザー確認により、原実装もゼロ・NaN・Inf・非正規化数を例外経路で処理します。例外分類の範囲は今回と共通です。返却bit・判定優先順位の詳細は原コード未入手のため同一性を検証していません。', '',
         f'最終ソースでCsim成功 **{passed_csim}/27条件**、HLS合成成功 **{len(current)}/27条件**、RTL Cosim成功 **{len(passed_cosim)}条件**。', '',
         '## 単体演算器', '',
-        'latencyはHLS top reportのWorst-caseLatency、intervalはInterval-maxを補正せず記載します。論文のレイテンシとtop handshakeを含む測定範囲が異なる可能性があります。標準IPの論文5 cycleに対し2025.2のtop latencyは4、intervalは5です。原top非公開のため同一性は断定しません。', '',
+        'latencyはHLS top reportのWorst-caseLatency、intervalはInterval-maxの生値です。論文の単体演算器はII=1であることがユーザーから確認されています。単体topにPIPELINE II=1を指定し、合成と連続入力のRTL Cosimで受付間隔を確認します。開始C0から完了Cnまでのサイクル枠で比較する場合はlatency+1と数えます。標準IPの生latency4は開始を含む5枠、独自版の生latency1は2枠です。経過時間への1周期加算や、BIND_OPの指定latencyへの一律補正は行いません。', '',
         '| 条件 | 論文 latency | 2025.2 top latency | interval | 論文 Fmax MHz | HLS推定 Fmax MHz | DSP | FF | LUT |',
         '|---|---:|---:|---:|---:|---:|---:|---:|---:|'
     ]

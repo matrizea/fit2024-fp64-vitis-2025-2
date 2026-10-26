@@ -1,7 +1,7 @@
 {
-  "scope": "標準IPと独自演算器の非パイプライン単体top。開始C0から完了Cnまでのサイクル枠をn+1と数える比較規約。BIND_OPの指定値・interval・Gauss-Jordanの実測経過サイクルへの一律加算ではない。",
+  "scope": "標準IPと独自演算器の単体top。最終版はPIPELINE II=1。開始C0から完了Cnまでの枠をn+1と数える比較規約で、IIや経過時間への加算ではない。",
   "paper_counting_convention_explicit": false,
-  "rationale": "標準IPと初版の独自加減乗算のすべてで、topの生latency+1が論文表2の値と一致。生成RTLで標準topの5状態・最終独自topの2状態とも整合する。",
+  "rationale": "標準IPと初版独自演算器のHLS生latency+1が論文値と一致。現行のパイプライン制御では状態数ではなく演算の開始・完了サイクルを比較する。",
   "comparisons": [
     {
       "operators": "add/sub/mul_native",
@@ -10,7 +10,7 @@
       "initial_inclusive": 5,
       "final_raw": 4,
       "final_inclusive": 5,
-      "final_interval": 5
+      "final_interval": 1
     },
     {
       "operators": "add_custom",
@@ -19,7 +19,7 @@
       "initial_inclusive": 3,
       "final_raw": 1,
       "final_inclusive": 2,
-      "final_interval": 2
+      "final_interval": 1
     },
     {
       "operators": "sub_custom",
@@ -28,7 +28,7 @@
       "initial_inclusive": 3,
       "final_raw": 1,
       "final_inclusive": 2,
-      "final_interval": 2
+      "final_interval": 1
     },
     {
       "operators": "mul_custom",
@@ -37,7 +37,7 @@
       "initial_inclusive": 2,
       "final_raw": 1,
       "final_inclusive": 2,
-      "final_interval": 2
+      "final_interval": 1
     }
   ],
   "raw_reports_modified": false,
