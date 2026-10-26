@@ -1,0 +1,21 @@
+{
+  "title_ja": "高位合成を用いて記述したFPGA上の倍精度浮動小数点演算器の論理合成最適化と性能評価",
+  "title_en": "Logic Synthesis Optimization and Performance Evaluation of Double-Precision Floating-Point Arithmetic Units on FPGA Using High-Level Synthesis",
+  "authors": [
+    "周東裕也",
+    "大本裕真",
+    "窪田昌史",
+    "弘中哲夫"
+  ],
+  "conference": "FIT2024 C-003, 第1分冊 pp.185-186",
+  "summary": "https://www.ieice.org/publications/conferences/summary.php?id=FIT0000016548&expandable=2&ConfCd=F&session_num=3c&lecture_number=C-003&year=2024&conf_type=F",
+  "pdf_download": "https://www.ieice.org/publications/conferences/bin/pdf_link.php?fname=C-003.pdf&year=2024&ConfCd=F&id=FIT0000016548&lang=J",
+  "pdf_official_mirror": "https://www.ipsj.or.jp/award/9faeag0000004f4v-att/C-003_3.pdf",
+  "original_tool": "Vitis HLS 2022.1",
+  "target_board": "ZCU104",
+  "clock_mhz": 100,
+  "reimplementation": true,
+  "original_sources_available": false,
+  "retrieved_at": "2026-10-26",
+  "pdf_sha256": "ae422666a924083ab884bd66348299052698ae9fc3dd0309ee8dae60faa49cf0"
+}

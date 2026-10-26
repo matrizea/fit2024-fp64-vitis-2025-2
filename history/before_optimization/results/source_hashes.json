@@ -1,0 +1,11 @@
+{
+  "src/fp64.hpp": "5a5470c39aee1dd17665813fe4d53bfb68493ae65379c5e3bcf233a0742a7d1f",
+  "src/kernels.hpp": "9f97a70c7a9e8bcea9cca20779142809aa33f59e6ab831866fde7b10b081e1e5",
+  "src/tops.cpp": "c6d06ca5de5b848820d4bcc2afbb9ff6096d487ff7dfc227f8572b1b1fdce5f1",
+  "tests/tb_amd_model.cpp": "2e564a6861c70df6d251be083af97258ad7fc734331bd90684707c9eaa9b30e4",
+  "tests/tb_fp64.cpp": "77696a19dd4dffa798b949b8bccf0b03fa58d8ea260a6a607ca95644d18822d5",
+  "tests/tb_kernels.cpp": "adab0190bee536fb6fd84b57182ad0e2eccd94c8260aa13f9135bea2904e4f5e",
+  "scripts/check_arithmetic.py": "f0ce96ae6c876bc405dc33328d7f7da2dd38fe1ff53b81dddae83fc4e8fb2f14",
+  "scripts/make_report.py": "9feecff5d7192b4d0e898478a8ff16b96de447d707ebc66eb9a6bfda30557ea2",
+  "scripts/run_hls.py": "f56045be5ea05858f779cc27f79bb0fd5b1937e56fae79b1ebba89cab2bce91a"
+}

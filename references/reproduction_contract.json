@@ -1,0 +1,27 @@
+{
+  "original_user_confirmed": {
+    "zero_input_uses_special_return_path": true,
+    "nan_input_uses_special_case": true,
+    "infinity_input_uses_special_case": true,
+    "subnormal_input_uses_special_case": true,
+    "confirmation_basis": "Specification clarification supplied during the reproduction; original source code was not inspected."
+  },
+  "original_unconfirmed": [
+    "Exact returned encodings for special-value input combinations",
+    "Subnormal output and underflow-rounding behavior",
+    "Priority of zero versus NaN/infinity checks",
+    "Signed-zero rules",
+    "Whether zero changes the RTL completion latency"
+  ],
+  "current_reimplementation": {
+    "zero_input_uses_special_return_path": true,
+    "nan_input_uses_special_case": true,
+    "infinity_input_uses_special_case": true,
+    "subnormal_input_uses_special_case": true,
+    "nan_infinity_checks_precede_zero": true,
+    "subnormal_inputs_use_zero_path": true,
+    "zero_and_exception_inputs_in_existing_rtl_tests": true,
+    "scalar_rtl_latency_cycles": 1,
+    "scalar_rtl_transaction_interval_cycles": 2
+  }
+}

@@ -1,0 +1,14 @@
+build/
+tmp/
+*.log
+*.jou
+__pycache__/
+.Xil/
+*.zip
+*.pdf
+*.exe
+*.dll
+*.lib
+*.a
+*.o
+*.obj
